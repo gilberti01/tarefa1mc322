@@ -13,4 +13,8 @@ public class CartaEscudo {
         heroi.ganharEscudo(this.escudo);
         heroi.alteraEnergia(this.custo);
     }
+
+    public void showStatus(){
+        System.out.println(this.name + " (" + this.escudo + " defense, -" + this.custo + "energy)");
+    }
 }

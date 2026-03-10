@@ -31,4 +31,19 @@ public class Heroi {
     public boolean estaVivo(){
         return (this.life>0); 
     }
+
+    public void showStatus(){
+        System.out.println(this.name + " status:");
+        System.out.println("Life: " + this.life);
+        System.out.println("Energy: " + this.energia);
+        System.out.println("Shield: 0");
+    }
+
+    public void setShield(int value){
+        this.escudo=value;
+    }
+
+    public void setName(String name){
+        this.name=name;
+    }
 }

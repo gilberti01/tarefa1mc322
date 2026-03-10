@@ -9,7 +9,12 @@ public class CartaDano {
     this.dano=dano;
     }
 
-    public void usar(Inimigo inimigo){
+    public void usar(Inimigo inimigo, Heroi heroi){
         inimigo.receberDano(this.dano);
+        heroi.alteraEnergia(this.custo);
+    }
+
+    public void showStatus(){
+        System.out.println(this.name + " (" + this.dano + " damage, -" + this.custo + "energy)");
     }
 }
