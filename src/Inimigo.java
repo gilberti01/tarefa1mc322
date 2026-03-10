@@ -37,6 +37,10 @@ public class Inimigo {
         return this.life;
     }
 
+    public int getDano(){
+        return this.dano_padrao;
+    }
+
     public void showStatus(){
         System.out.println(this.name + " status:");
         System.out.println("Life: " + this.life);

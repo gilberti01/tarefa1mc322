@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class App {
 
@@ -7,10 +6,10 @@ public class App {
         
         Heroi heroi = new Heroi("Nome", 199, 0, 5);
         Inimigo inimigo = new Inimigo("IFGW", 100, 0,7);
-        CartaDano espada = new CartaDano("espadao", 5, 10);
-        CartaDano tapa = new CartaDano("quertapatomatapa", 2, 3);
-        CartaEscudo escudo = new CartaEscudo("escudao", 4, 6);
-        CartaEscudo escudoQuebrado = new CartaEscudo("quebradao", 2, 2);
+        CartaDano espada = new CartaDano("Espada", 5, 10);
+        CartaDano tapa = new CartaDano("Tapa", 2, 3);
+        CartaEscudo escudo = new CartaEscudo("Escudo", 4, 6);
+        CartaEscudo escudoQuebrado = new CartaEscudo("Escudo Quebradao", 2, 2);
 
         
 
@@ -34,7 +33,7 @@ public class App {
         System.out.println("-----------------------");
     
         
-        while (inimigo.getLife()>0){
+        while(true){
 
             heroi.setShield(0);
 
@@ -49,11 +48,30 @@ public class App {
             System.out.print("4: ");
             escudoQuebrado.showStatus();
 
-            int skip = entrada.nextInt();
-            if (skip!=0){
-                System.out.println("Attack options:");
-            
-                System.out.println("Press 1 for ");
+            int action = entrada.nextInt();
+            if(action == 1){
+                //usa espada
+            }else if(action == 2){
+                //usa tapa
+            }else if(action == 2){
+                //usa escudo
+            }else if(action == 2){
+                //usa escudo quebrado
+            }else{
+                //print entrada invalida
+            }
+
+            if(!inimigo.estaVivo()){
+                //print You Win!
+                //+n points
+                break;
+            }
+
+            //print inimigo.getName() attacked! -inimigo.getDano() life
+
+            if(!heroi.estaVivo()){
+                //print You Lose!
+                break;
             }
         }
 
