@@ -36,7 +36,6 @@ public class Heroi {
         System.out.println(this.name + " status:");
         System.out.println("Life: " + this.life);
         System.out.println("Energy: " + this.energia);
-        System.out.println("Shield: 0");
     }
 
     public void setShield(int value){

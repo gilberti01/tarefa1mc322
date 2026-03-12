@@ -49,16 +49,26 @@ public class App {
             escudoQuebrado.showStatus();
 
             int action = entrada.nextInt();
-            if(action == 1){
-                //usa espada
-            }else if(action == 2){
-                //usa tapa
-            }else if(action == 2){
-                //usa escudo
-            }else if(action == 2){
-                //usa escudo quebrado
-            }else{
-                //print entrada invalida
+
+            while(true){
+                if(action == 1){
+                    //usa espada
+                    if(heroi.getEnergia()>=espada.getCusto()){
+                        espada.usar(inimigo,heroi);
+                        break;
+                    }else{
+                        System.out.print("Insuficient energy, choose another action!");
+                    }
+                }else if(action == 2){
+                    //usa tapa
+                }else if(action == 2){
+                    //usa escudo
+                }else if(action == 2){
+                    //usa escudo quebrado
+                }else{
+                    System.out.print("Invalid entry, turn skipped!");
+                    break;
+                }
             }
 
             if(!inimigo.estaVivo()){

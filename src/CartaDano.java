@@ -15,6 +15,10 @@ public class CartaDano {
     }
 
     public void showStatus(){
-        System.out.println(this.name + " (" + this.dano + " damage, -" + this.custo + "energy)");
+        System.out.println(this.name + " (" + this.dano + " damage, -" + this.custo + " energy)");
+    }
+
+    public int getCusto(){
+        return this.custo;
     }
 }

@@ -15,6 +15,10 @@ public class CartaEscudo {
     }
 
     public void showStatus(){
-        System.out.println(this.name + " (" + this.escudo + " defense, -" + this.custo + "energy)");
+        System.out.println(this.name + " (" + this.escudo + " defense, -" + this.custo + " energy)");
+    }
+
+    public int getCusto(){
+        return this.custo;
     }
 }
