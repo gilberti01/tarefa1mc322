@@ -17,8 +17,8 @@ public class Inimigo {
         this.life-=dano;
     }
 
-    public void atacar(Heroi heroi, int dano){
-        heroi.receberDano(dano);
+    public void atacar(Heroi heroi){
+        heroi.receberDano(this.dano_padrao);
     }
 
     // public void alteraEnergia(int custo){
@@ -37,12 +37,13 @@ public class Inimigo {
         return this.life;
     }
 
-    public int getDano(){
-        return this.dano_padrao;
+    public int getDano(Heroi heroi){
+        return Math.max(this.dano_padrao-heroi.getEscudo(),1);
     }
 
     public void showStatus(){
         System.out.println(this.name + " status:");
         System.out.println("Life: " + this.life);
     }
+
 }

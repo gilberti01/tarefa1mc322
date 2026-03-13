@@ -4,8 +4,8 @@ public class App {
 
     public static void main(String[] args){
         
-        Heroi heroi = new Heroi("Nome", 199, 0, 5);
-        Inimigo inimigo = new Inimigo("IFGW", 100, 0,7);
+        Heroi heroi = new Heroi("Nome", 35, 0, 5,3);
+        Inimigo inimigo = new Inimigo("IFGW", 20, 0,7);
         CartaDano espada = new CartaDano("Espada", 5, 10);
         CartaDano tapa = new CartaDano("Tapa", 2, 3);
         CartaEscudo escudo = new CartaEscudo("Escudo", 4, 6);
@@ -22,18 +22,18 @@ public class App {
 
         System.out.println("You encountered " + inimigo.getName() + "!");
         System.out.println("Press enter to start the duel!");
-        System.out.println("You will regenerate 2 points of energy each turn");
+        System.out.println("You will regenerate " + heroi.getRegeneracao() + " points of energy each turn!");
         String placeholder = entrada.nextLine();
 
         heroi.setName(name);
-
-        heroi.showStatus();
-        System.out.println("-----------------------");
-        inimigo.showStatus();
-        System.out.println("-----------------------");
     
         
         while(true){
+
+            heroi.showStatus();
+            System.out.println("-----------------------");
+            inimigo.showStatus();
+            System.out.println("-----------------------");
 
             heroi.setShield(0);
 
@@ -48,45 +48,70 @@ public class App {
             System.out.print("4: ");
             escudoQuebrado.showStatus();
 
-            int action = entrada.nextInt();
-
             while(true){
+                int action = entrada.nextInt();
                 if(action == 1){
                     //usa espada
                     if(heroi.getEnergia()>=espada.getCusto()){
                         espada.usar(inimigo,heroi);
                         break;
+
                     }else{
-                        System.out.print("Insuficient energy, choose another action!");
+                        System.out.print("Insuficient energy, choose another action!\n");
                     }
                 }else if(action == 2){
-                    //usa tapa
-                }else if(action == 2){
-                    //usa escudo
-                }else if(action == 2){
-                    //usa escudo quebrado
+                    if(heroi.getEnergia()>=tapa.getCusto()){
+                        tapa.usar(inimigo,heroi);
+                        break;
+
+                    }else{
+                        System.out.print("Insuficient energy, choose another action!\n");
+                    }
+                }else if(action == 3){
+                    if(heroi.getEnergia()>=escudo.getCusto()){
+                        escudo.usar(heroi);
+                        break;
+                    }else{
+                        System.out.print("Insuficient energy, choose another action!\n");
+                    }
+                }else if(action == 4){
+                    if(heroi.getEnergia()>=escudoQuebrado.getCusto()){
+                        escudoQuebrado.usar(heroi);
+                        break;
+
+                    }else{
+                        System.out.print("Insuficient energy, choose another action!\n");
+                    }
                 }else{
-                    System.out.print("Invalid entry, turn skipped!");
+                    System.out.print("Invalid entry, turn skipped!\n");
                     break;
                 }
             }
 
             if(!inimigo.estaVivo()){
-                //print You Win!
+                System.out.println("You win!");
                 //+n points
                 break;
+            } else {
+                inimigo.atacar(heroi);
+                System.out.println("");
+                System.out.println(inimigo.getName() + " attacked! " + "You lost " + inimigo.getDano(heroi) + " life!");
+                System.out.println("");
             }
-
-            //print inimigo.getName() attacked! -inimigo.getDano() life
 
             if(!heroi.estaVivo()){
-                //print You Lose!
+                System.out.println("You DIED! hahahaha");
                 break;
             }
+
+            heroi.regenera();
+
+            System.out.println("Round ended.");
+            System.out.println("You regenerated " + heroi.getRegeneracao() + " energy!");
+            System.out.println("-----------------------------------");
         }
 
         entrada.close();
-
     }
 }
 

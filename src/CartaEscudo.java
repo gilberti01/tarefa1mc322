@@ -12,6 +12,8 @@ public class CartaEscudo {
     public void usar(Heroi heroi){
         heroi.ganharEscudo(this.escudo);
         heroi.alteraEnergia(this.custo);
+        System.out.println("Used " + this.name);
+        System.out.println(heroi.getName() + " gained " + this.escudo + " shield!");
     }
 
     public void showStatus(){

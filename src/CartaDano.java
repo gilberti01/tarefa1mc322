@@ -12,6 +12,9 @@ public class CartaDano {
     public void usar(Inimigo inimigo, Heroi heroi){
         inimigo.receberDano(this.dano);
         heroi.alteraEnergia(this.custo);
+        System.out.println("Used " + this.name);
+        System.out.println(heroi.getName() + " lost " + this.custo + " energy!");
+        System.out.println(inimigo.getName() + " lost " + this.dano + " life!");
     }
 
     public void showStatus(){
