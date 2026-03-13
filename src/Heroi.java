@@ -6,6 +6,7 @@ public class Heroi {
     private int energia;
     private int regeneracao;
 
+    //construct
     public Heroi(String name, int life, int escudo, int energia, int regeneracao){
         this.name=name;
         this.life=life;
@@ -14,18 +15,22 @@ public class Heroi {
         this.regeneracao=regeneracao;
     }
 
+    //lógica de recebimento de dano, o jogador sempre toma ao menos um de dano
     public void receberDano(int dano){
         this.life-=Math.max(1,dano-escudo);
     }
 
+    //ganhando escudo
     public void ganharEscudo(int escudo){
         this.escudo+=escudo;
     }
 
+    //getEscudo
     public int getEscudo(){
         return this.escudo;
     }
 
+    //altera a energia
     public void alteraEnergia(int custo){
         this.energia-=custo;
     }
@@ -38,6 +43,7 @@ public class Heroi {
         return (this.life>0); 
     }
 
+    //posta status do heroi
     public void showStatus(){
         System.out.println(this.name + " status:");
         System.out.println("Life: " + this.life);
@@ -60,6 +66,7 @@ public class Heroi {
         return regeneracao;
     }
 
+    //de fato regenera a energia do herói
     public void regenera(){
         this.energia+=this.regeneracao;
     }

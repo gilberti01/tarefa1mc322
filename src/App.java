@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args){
-        
+        //aqui, definimos a estrutura básica do jogo, dando valores aos atributos necessários
         Heroi heroi = new Heroi("Nome", 35, 0, 5,3);
         Inimigo inimigo = new Inimigo("IFGW", 20, 0,7);
         CartaDano espada = new CartaDano("Espada", 5, 10);
@@ -14,12 +14,12 @@ public class App {
         
 
         System.out.println("Enter your name to begin battle:");
-
+        //lendo nome escolhido por voce :)
         Scanner entrada = new Scanner(System.in);
 
         String name = entrada.nextLine();
 
-
+        //começando o jogo em si
         System.out.println("You encountered " + inimigo.getName() + "!");
         System.out.println("Press enter to start the duel!");
         System.out.println("You will regenerate " + heroi.getRegeneracao() + " points of energy each turn!");
@@ -27,7 +27,7 @@ public class App {
 
         heroi.setName(name);
     
-        
+        //esse loop só acaba quando um dos dois morrem
         while(true){
 
             heroi.showStatus();
@@ -39,6 +39,7 @@ public class App {
 
             System.out.println("Select a number to choose your action (an invalid entry will skip your turn)");
 
+            //opções de ação
             System.out.print("1: ");
             espada.showStatus();
             System.out.print("2: ");
@@ -48,6 +49,7 @@ public class App {
             System.out.print("4: ");
             escudoQuebrado.showStatus();
 
+            //loop do turno do herói
             while(true){
                 int action = entrada.nextInt();
                 if(action == 1){
@@ -60,6 +62,7 @@ public class App {
                         System.out.print("Insuficient energy, choose another action!\n");
                     }
                 }else if(action == 2){
+                    //usa tapa
                     if(heroi.getEnergia()>=tapa.getCusto()){
                         tapa.usar(inimigo,heroi);
                         break;
@@ -68,6 +71,7 @@ public class App {
                         System.out.print("Insuficient energy, choose another action!\n");
                     }
                 }else if(action == 3){
+                    //usa escudo
                     if(heroi.getEnergia()>=escudo.getCusto()){
                         escudo.usar(heroi);
                         break;
@@ -75,6 +79,7 @@ public class App {
                         System.out.print("Insuficient energy, choose another action!\n");
                     }
                 }else if(action == 4){
+                    //usa escudoQuebrado
                     if(heroi.getEnergia()>=escudoQuebrado.getCusto()){
                         escudoQuebrado.usar(heroi);
                         break;
@@ -83,6 +88,7 @@ public class App {
                         System.out.print("Insuficient energy, choose another action!\n");
                     }
                 }else{
+                    //pula turno
                     System.out.print("Invalid entry, turn skipped!\n");
                     break;
                 }
@@ -93,6 +99,7 @@ public class App {
                 //+n points
                 break;
             } else {
+                //inimigo ataca
                 inimigo.atacar(heroi);
                 System.out.println("");
                 System.out.println(inimigo.getName() + " attacked! " + "You lost " + inimigo.getDano(heroi) + " life!");
@@ -100,11 +107,12 @@ public class App {
             }
 
             if(!heroi.estaVivo()){
+                //booleano verifica se herói ta vivo
                 System.out.println("You DIED! hahahaha");
                 break;
             }
 
-            heroi.regenera();
+            heroi.regenera();//regenerando energia do herói
 
             System.out.println("Round ended.");
             System.out.println("You regenerated " + heroi.getRegeneracao() + " energy!");

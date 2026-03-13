@@ -5,6 +5,7 @@ public class Inimigo {
     //private int energia;
     private int dano_padrao;
 
+    //construct, resolvemos tirar o escudo e a energia do inimigo por so complicarem inicialmente
     public Inimigo(String name, int life, int escudo, int dano_padrao){
         this.name=name;
         this.life=life;
@@ -13,10 +14,12 @@ public class Inimigo {
         this.dano_padrao=dano_padrao;
     }
 
+    //toma dano do herói de acordo com o parâmetro da arma do herói
     public void receberDano(int dano){
         this.life-=dano;
     }
 
+    //ataca o herói com dano padrao
     public void atacar(Heroi heroi){
         heroi.receberDano(this.dano_padrao);
     }
@@ -40,6 +43,8 @@ public class Inimigo {
     public int getDano(Heroi heroi){
         return Math.max(this.dano_padrao-heroi.getEscudo(),1);
     }
+
+    //mostra o status do inimigo
 
     public void showStatus(){
         System.out.println(this.name + " status:");
