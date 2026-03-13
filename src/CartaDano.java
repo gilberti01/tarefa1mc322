@@ -10,7 +10,7 @@ public class CartaDano {
     this.dano=dano;
     }
 
-    //usando a carta durante a batalha
+    //usa a carta durante a batalha
     public void usar(Inimigo inimigo, Heroi heroi){
         inimigo.receberDano(this.dano);
         heroi.alteraEnergia(this.custo);

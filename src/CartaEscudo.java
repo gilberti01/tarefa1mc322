@@ -4,15 +4,13 @@ public class CartaEscudo {
     private int escudo;
 
     //construct
-    
     public CartaEscudo(String name, int custo, int escudo){
     this.name=name;
     this.custo=custo;
     this.escudo=escudo;
     }
 
-    //usa de fato a carta, durante a batalha
-
+    //usa a carta durante a batalha
     public void usar(Heroi heroi){
         heroi.ganharEscudo(this.escudo);
         heroi.alteraEnergia(this.custo);
@@ -21,7 +19,6 @@ public class CartaEscudo {
     }
 
     //mostra status da carta
-
     public void showStatus(){
         System.out.println(this.name + " (" + this.escudo + " defense, -" + this.custo + " energy)");
     }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args){
-        //aqui, definimos a estrutura básica do jogo, dando valores aos atributos necessários
+        //instanciando objetos do jogo
         Heroi heroi = new Heroi("Nome", 35, 0, 5,3);
         Inimigo inimigo = new Inimigo("IFGW", 20, 0,7);
         CartaDano espada = new CartaDano("Espada", 5, 10);
@@ -12,34 +12,31 @@ public class App {
         CartaEscudo escudoQuebrado = new CartaEscudo("Escudo Quebradao", 2, 2);
 
         
-
+        //escolhendo nome do heroi
         System.out.println("Enter your name to begin battle:");
-        //lendo nome escolhido por voce :)
         Scanner entrada = new Scanner(System.in);
-
         String name = entrada.nextLine();
+        heroi.setName(name);
 
-        //começando o jogo em si
+        //encontro com o enimigo
         System.out.println("You encountered " + inimigo.getName() + "!");
         System.out.println("Press enter to start the duel!");
         System.out.println("You will regenerate " + heroi.getRegeneracao() + " points of energy each turn!");
         String placeholder = entrada.nextLine();
-
-        heroi.setName(name);
     
-        //esse loop só acaba quando um dos dois morrem
+        //loob da batalha
         while(true){
+            heroi.setShield(0);
 
+            //exibindo status do heroi e inimigo
             heroi.showStatus();
             System.out.println("-----------------------");
             inimigo.showStatus();
             System.out.println("-----------------------");
 
-            heroi.setShield(0);
-
             System.out.println("Select a number to choose your action (an invalid entry will skip your turn)");
 
-            //opções de ação
+            //opcoes de acao
             System.out.print("1: ");
             espada.showStatus();
             System.out.print("2: ");
@@ -49,7 +46,7 @@ public class App {
             System.out.print("4: ");
             escudoQuebrado.showStatus();
 
-            //loop do turno do herói
+            //loop de escolha de acao do heroi
             while(true){
                 int action = entrada.nextInt();
                 if(action == 1){
@@ -94,26 +91,26 @@ public class App {
                 }
             }
 
+            //ataque do inimigo
             if(!inimigo.estaVivo()){
                 System.out.println("You win!");
-                //+n points
+                //+n points?
                 break;
             } else {
-                //inimigo ataca
                 inimigo.atacar(heroi);
                 System.out.println("");
                 System.out.println(inimigo.getName() + " attacked! " + "You lost " + inimigo.getDano(heroi) + " life!");
                 System.out.println("");
             }
 
+            //verifica se heroi esta vivo
             if(!heroi.estaVivo()){
-                //booleano verifica se herói ta vivo
                 System.out.println("You DIED! hahahaha");
                 break;
             }
 
-            heroi.regenera();//regenerando energia do herói
-
+            //regenera vida do heroi e vai para o proximo round
+            heroi.regenera();
             System.out.println("Round ended.");
             System.out.println("You regenerated " + heroi.getRegeneracao() + " energy!");
             System.out.println("-----------------------------------");
